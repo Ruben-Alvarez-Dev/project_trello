@@ -3,12 +3,13 @@ import { useState } from "react";
 import { AddCardorListText } from "./AddCardorListText";
 
 export const AddCardorList = ({ type }) => {
-  const classes = useStyle();
   const [open, setOpen] = useState(true);
+  const classes = useStyle();
+
   return (
       <div className={classes.root}>
         <Collapse in={open}>
-          <AddCardorListText type={type} />
+          <AddCardorListText type={type} setOpen={setOpen}/>
         </Collapse>
         <Collapse in={!open}>
           <Paper className={classes.AddCardorListText}>

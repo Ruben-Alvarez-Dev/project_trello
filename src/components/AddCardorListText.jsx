@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ClearIcon from '@material-ui/icons/Clear';
 import { MoreHoriz } from '@material-ui/icons';
 
-export const AddCardorListText = ({ type }) => {
+export const AddCardorListText = ({ type, setOpen }) => {
     const [title, setTitle] = useState('');
     const classes = useStyle();
     
@@ -12,7 +12,8 @@ export const AddCardorListText = ({ type }) => {
         <Paper className={classes.card}>
             <InputBase 
                 multiline
-                value={title} 
+                    value={title} 
+                    onBlur={()=>setOpen(false)}
                 onChange={e=>setTitle(e.target.value)}
                     placeholder={
 
