@@ -26,7 +26,13 @@ export const AddCardorListText = ({ type }) => {
         </Paper>
         <div className={classes.confirm}>
             <div className={classes.options}>   
-                <Button className={classes.btnConfirm}>Add card</Button>
+                <Button className={classes.btnConfirm}>
+                    {
+                        type === "card"
+                            ? 'Add card'
+                            : 'Add list'
+                    }
+                </Button>
                 <IconButton>
                     <ClearIcon />
                 </IconButton>
