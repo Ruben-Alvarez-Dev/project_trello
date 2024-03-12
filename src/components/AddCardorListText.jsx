@@ -27,15 +27,15 @@ export const AddCardorListText = ({ type, setOpen }) => {
         </Paper>
         <div className={classes.confirm}>
             <div className={classes.options}>   
-                <Button className={classes.btnConfirm}>
-                    {
-                        type === "card"
-                            ? 'Add card'
-                            : 'Add list'
-                    }
-                </Button>
+                    <Button className={classes.btnConfirm}>
+                        {
+                            type === "card"
+                                ? 'Add card'
+                                : 'Add list'
+                        }
+                    </Button>
                 <IconButton>
-                    <ClearIcon />
+                    <ClearIcon onClick={() => setOpen(false)} />
                 </IconButton>
             </div>
                 <IconButton>

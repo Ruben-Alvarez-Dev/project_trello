@@ -12,7 +12,10 @@ export const AddCardorList = ({ type }) => {
           <AddCardorListText type={type} setOpen={setOpen}/>
         </Collapse>
         <Collapse in={!open}>
-          <Paper className={classes.AddCardorListText}>
+          <Paper 
+            className={classes.AddCardorListText}
+            onClick={() => setOpen(true)}
+          >
             <Typography>
                 {
                     type === "card" 
