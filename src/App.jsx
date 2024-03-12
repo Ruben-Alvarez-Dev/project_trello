@@ -5,26 +5,31 @@ import { makeStyles } from '@material-ui/core';
 import bg from './assets/bg.jpeg';
 import { AddCardorList } from './components/AddCardorList';
 import { mockData } from './mockdata';
-
+import ContextAPI from './contextAPI';
 
 function App() {
   const classes = useStyle();
   const [data, setData] = useState(mockData);
   
   return (
-    <div className={classes.root}>
-      <div className={classes.container}>
+    <>
+      <ContextAPI.Provider>
+          <div className={classes.root}>
+            <div className={classes.container}>
 
-        {
-          data.listIds.map((listId) => {
-            const list = data.lists[listId];
-            return <TrelloList list={list} key={listId} />
-          })
-        }
-        
-        <AddCardorList type="list" />
-      </div>
-    </div>
+              {
+                data.listIds.map((listId) => {
+                  const list = data.lists[listId];
+                  return <TrelloList list={list} key={listId} />
+                })
+              }
+              
+              <AddCardorList type="list" />
+            </div>
+          </div>
+      </ContextAPI.Provider>
+      
+    </>
   );
 }
 
