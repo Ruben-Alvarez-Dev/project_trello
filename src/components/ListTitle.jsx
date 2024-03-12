@@ -2,16 +2,15 @@ import { Typography, makeStyles } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 export const ListTitle = () => {
-  
     const classes = useStyle();
+
     return (
-    
-    <div className={classes.title}>
-        <Typography className={classes.titleText}>
-            To do
-        </Typography>
-        <MoreHorizIcon />
-    </div>
+        <div className={classes.title}>
+            <Typography className={classes.titleText}>
+                To do
+            </Typography>
+            <MoreHorizIcon />
+        </div>
   )
 }
 
