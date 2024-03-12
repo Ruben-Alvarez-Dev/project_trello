@@ -4,7 +4,7 @@ import { AddCardorListText } from "./AddCardorListText";
 
 export const AddCardorList = () => {
   const classes = useStyle();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   return (
       <div className={classes.root}>
         <Collapse in={open}>
