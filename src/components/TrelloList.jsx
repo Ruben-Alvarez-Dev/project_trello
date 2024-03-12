@@ -10,7 +10,7 @@ export const TrelloList = ({ list }) => {
   return (
       <Paper className={classes.root}>
         <CssBaseline />
-        <ListTitle />
+        <ListTitle title={list.title} listId={list.id}/>
         {
           list.cards.map(card => {
             return <TrelloCard card={card} key={card.id} />
