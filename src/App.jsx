@@ -1,11 +1,12 @@
-
 import './App.css'
+import { TrelloList } from './components/TrelloList'
 
 function App() {
   
   return (
     <>
-      <h1>React App</h1>
+      
+      <TrelloList />
     </>
   )
 }
