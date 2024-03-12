@@ -1,16 +1,21 @@
-import { Collapse, fade, makeStyles, Paper, Typography } from "@material-ui/core";
+import { Collapse, alpha, makeStyles, Paper, Typography } from "@material-ui/core";
 import { useState } from "react";
+import { AddCardorListText } from "./AddCardorListText";
 
 export const AddCardorList = () => {
   const classes = useStyle();
   const [open, setOpen] = useState(false);
   return (
-      <div>
+      <div className={classes.root}>
         <Collapse in={open}>
-          <h1>Opened</h1>
+          <AddCardorListText />
         </Collapse>
         <Collapse in={!open}>
-          <h1>Closed</h1>
+          <Paper className={classes.AddCardorListText}>
+            <Typography>
+              + Add another card
+            </Typography>
+          </Paper>
         </Collapse>
       </div>
   )
@@ -18,7 +23,17 @@ export const AddCardorList = () => {
 
 const useStyle = makeStyles(theme => ({
   root: {
-    
+    width: '300px',
+    marginTop: theme.spacing(1),
+  },
+  AddCardorListText: {
+    padding: theme.spacing(1, 1, 1, 2),
+    margin: theme.spacing(0, 1, 1, 1),
+    backgroundColor: '#ebecf0',
+    '&:hover': {
+      backgroundColor: alpha('#000000', 0.25)
+    }
   }
 
 }))
+
