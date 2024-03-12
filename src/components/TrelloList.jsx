@@ -1,8 +1,16 @@
-
+import { Paper, CssBaseline } from '@material-ui/core';
+import { ListTitle } from './ListTitle';
+import { TrelloCard } from './TrelloCard';
+import { AddCardorList } from './AddCardorList';
 export const TrelloList = () => {
   return (
-    <div>
-        <h4>Trello List</h4>
-    </div>
+    <Paper>
+      <CssBaseline />
+      <ListTitle />
+      <TrelloCard />
+      <TrelloCard />
+      <AddCardorList />
+
+    </Paper>
   )
 }
