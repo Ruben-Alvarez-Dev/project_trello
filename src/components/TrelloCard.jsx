@@ -1,11 +1,13 @@
 import { makeStyles, Paper } from "@material-ui/core";
 
-export const TrelloCard = () => {
+export const TrelloCard = ({card}) => {
     const classes = useStyle();
 
     return (
         <Paper className={classes.trelloCard}>
-            Card
+            {
+                card.title
+            }
         </Paper>
   )
 }
@@ -16,4 +18,4 @@ const useStyle = makeStyles(theme => ({
         margin: theme.spacing(1) 
     }
   
-  }))
+  })) 

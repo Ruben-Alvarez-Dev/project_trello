@@ -1,18 +1,27 @@
 import './App.css';
+import { useState } from 'react';
 import { TrelloList } from './components/TrelloList';
 import { makeStyles } from '@material-ui/core';
 import bg from './assets/bg.jpeg';
 import { AddCardorList } from './components/AddCardorList';
+import { mockData } from './mockdata';
 
 
-export const App = () => {
-const classes = useStyle()
+function App() {
+  const classes = useStyle();
+  const [data, setData] = useState(mockData);
+  
   return (
     <div className={classes.root}>
       <div className={classes.container}>
-        <TrelloList />
-        <TrelloList />
-        <TrelloList />
+
+        {
+          data.listIds.map((listId) => {
+            const list = data.lists[listId];
+            return <TrelloList list={list} key={listId} />
+          })
+        }
+        
         <AddCardorList type="list" />
       </div>
     </div>
