@@ -2,6 +2,7 @@ import './App.css';
 import { TrelloList } from './components/TrelloList';
 import { makeStyles } from '@material-ui/core';
 import bg from './assets/bg.jpeg';
+import { AddCardorList } from './components/AddCardorList';
 
 
 export const App = () => {
@@ -12,6 +13,7 @@ const classes = useStyle()
         <TrelloList />
         <TrelloList />
         <TrelloList />
+        <AddCardorList type="list" />
       </div>
     </div>
   );

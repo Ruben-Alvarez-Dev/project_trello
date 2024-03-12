@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ClearIcon from '@material-ui/icons/Clear';
 import { MoreHoriz } from '@material-ui/icons';
 
-export const AddCardorListText = () => {
+export const AddCardorListText = ({ type }) => {
     const [title, setTitle] = useState('');
     const classes = useStyle();
     
@@ -14,7 +14,13 @@ export const AddCardorListText = () => {
                 multiline
                 value={title} 
                 onChange={e=>setTitle(e.target.value)}
-                placeholder='Enter a title...'
+                    placeholder={
+
+                        type === "card"
+                            ? 'Enter a card title...'
+                            : 'Enter a list title...'
+                    }
+                        
                 inputProps={{className: classes.input}}
             />
         </Paper>
