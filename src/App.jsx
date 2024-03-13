@@ -1,19 +1,31 @@
 import './App.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { TrelloList } from './components/TrelloList';
 import { makeStyles } from '@material-ui/core';
 import bg from './assets/bg.jpeg';
 import { AddCardorList } from './components/AddCardorList';
 import { mockData } from './mockdata';
-import ContextAPI from './contextAPI';
+import ContextAPI from './ContextAPI';
 
 function App() {
   const classes = useStyle();
   const [data, setData] = useState(mockData);
-  
+    
+  const updateListTitle = (updatedTitle, listId) => {
+    const list = data.lists[listId];
+    list.title = updatedTitle;
+    setData({
+      ...data,
+      lists: {
+        ...data.lists,
+        [listId]: list
+      }
+    })
+    
+  }
   return (
     <>
-      <ContextAPI.Provider>
+      <ContextAPI.Provider value={{ updateListTitle }}>
           <div className={classes.root}>
             <div className={classes.container}>
 
