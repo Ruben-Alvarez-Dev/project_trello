@@ -21,11 +21,19 @@ function App() {
         [listId]: list
       }
     })
-    
   }
+  const addCard = (title, listId) => {
+
+  }
+  const addList = (title) => {}
+
   return (
     <>
-      <ContextAPI.Provider value={{ updateListTitle }}>
+      <ContextAPI.Provider value={{ 
+          updateListTitle,
+          addCard,
+          addList
+      }}>
           <div className={classes.root}>
             <div className={classes.container}>
 
@@ -35,8 +43,9 @@ function App() {
                   return <TrelloList list={list} key={listId} />
                 })
               }
-              
-              <AddCardorList type="list" />
+              <div>
+                <AddCardorList type="list"/>
+              </div>
             </div>
           </div>
       </ContextAPI.Provider>

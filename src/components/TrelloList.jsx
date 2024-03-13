@@ -12,12 +12,12 @@ export const TrelloList = ({ list }) => {
         <CssBaseline />
         <ListTitle title={list.title} listId={list.id}/>
         {
-          list.cards.map(card => {
-            return <TrelloCard card={card} key={card.id} />
-          })
+          list.cards.map(card => (
+              <TrelloCard card={card} key={card.id} />
+          ))
         }
         
-        <AddCardorList type="card"/>
+        <AddCardorList type="card" listId={list.id}/>
       </Paper>   
   )
 }
