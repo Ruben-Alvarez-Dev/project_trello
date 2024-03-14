@@ -7,7 +7,7 @@ import { AddCardorList } from './components/AddCardorList';
 import { mockData } from './mockdata';
 import ContextAPI from './ContextAPI';
 import uuid from 'react-uuid';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
 function App() {
   const classes = useStyle();
@@ -42,50 +42,36 @@ function App() {
   }
   const addList = (title) => {
     const newListId = uuid();
-    const newList = {
-      id: newListId,
-      title,
-      cards: []
-    }
     setData({
       listIds: [...data.listIds, newListId],
       lists: {
         ...data.lists,
-        [newListId]: newList
+        [newListId]: {
+          id: newListId,
+          title,
+          cards: []
+        }
       }
     })
+        
   }
 
   const onDragEnd = () => {}
 
   return (
     <>
-      <ContextAPI.Provider value={{ 
-          updateListTitle,
-          addCard,
-          addList
-      }}>
+      <ContextAPI.Provider value={{ updateListTitle, addCard, addList }}>
           <div className={classes.root}>
-          <DragDropContext
-              onDragEnd={ onDragEnd }
-          >
-            <Droppable 
-                droppableId="12345" 
-                type="list" 
-                direction="horizontal"
-            >
+          <DragDropContext onDragEnd={ onDragEnd }>
+            <Droppable droppableId="12345" type="list" direction="horizontal">
             
                 {provided => (
-                  <div 
-                    className={classes.container} 
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                  >
+                  <div className={classes.container} ref={provided.innerRef} {...provided.droppableProps}>
                       
                       {
                         data.listIds.map((listId) => {
                           const list = data.lists[listId];
-                          return <TrelloList list={list} key={listId} />
+                          return <TrelloList list={list} key={listId}/>
                         })
                       }
 
