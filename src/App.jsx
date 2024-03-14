@@ -6,6 +6,7 @@ import bg from './assets/bg.jpeg';
 import { AddCardorList } from './components/AddCardorList';
 import { mockData } from './mockdata';
 import ContextAPI from './ContextAPI';
+import uuid from 'react-uuid';
 
 function App() {
   const classes = useStyle();
@@ -23,9 +24,36 @@ function App() {
     })
   }
   const addCard = (title, listId) => {
-
+    const newCardId = uuid();
+    const newCard = {
+      id: newCardId,
+      title,
+    }
+    const list = data.lists[listId];
+    list.cards = [...list.cards, newCard];
+    setData({
+      ...data,
+      lists: {
+        ...data.lists,
+        [listId]: list
+      }
+    })
   }
-  const addList = (title) => {}
+  const addList = (title) => {
+    const newListId = uuid();
+    const newList = {
+      id: newListId,
+      title,
+      cards: []
+    }
+    setData({
+      listIds: [...data.listIds, newListId],
+      lists: {
+        ...data.lists,
+        [newListId]: newList
+      }
+    })
+  }
 
   return (
     <>
