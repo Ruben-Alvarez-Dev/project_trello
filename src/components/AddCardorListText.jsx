@@ -11,7 +11,7 @@ export const AddCardorListText = ({ type, setOpen, listId }) => {
     const { addCard, addList } = useContext(contextAPI);
     
     const handleAddCardorList = () => {
-        if (type === "card") {
+        if (type & type === "card") {
             addCard(title, listId);
         } else {
             addList(title);

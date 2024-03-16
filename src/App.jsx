@@ -12,6 +12,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 function App() {
   const classes = useStyle();
   const [data, setData] = useState(mockData);
+
     
   const updateListTitle = (updatedTitle, listId) => {
     const list = data.lists[listId];
@@ -55,8 +56,28 @@ function App() {
     })
         
   }
-  const onDragEnd = () => {}
-
+  const onDragEnd = (result) => {
+    const { destination, source, draggableId, type } = result;
+    console.table(result);
+  
+    if (!destination) {
+      return;
+    }
+  
+    if (type === 'list') {
+      const newListIds = Array.from(data.listIds);
+      newListIds.splice(source.index, 1);
+      newListIds.splice(destination.index, 0, draggableId);
+  
+      const newData = {
+        ...data,
+        listIds: newListIds,
+      };
+  
+      setData(newData);
+      return;
+    }
+  };
   return (
     <>
       <ContextAPI.Provider value={{ updateListTitle, addCard, addList }}>

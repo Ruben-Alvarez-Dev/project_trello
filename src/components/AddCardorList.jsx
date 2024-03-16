@@ -3,49 +3,43 @@ import { useState } from "react";
 import { AddCardorListText } from "./AddCardorListText";
 
 export const AddCardorList = ({ type, listId }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const classes = useStyle();
 
   return (
-      <div className={classes.root}>
-        <Collapse in={open}>
-          <AddCardorListText 
-              type={type}
-              setOpen={setOpen}
-              listId={listId}
-          />
-        </Collapse>
-        <Collapse in={!open}>
-          <Paper 
-              className={classes.AddCardorListText}
-              onClick={() => setOpen(true)}
-          >
-            <Typography>
-                {
-                    type === "card" 
-                      ? " + Add a card"
-                      : " + Add another list"
-                }
-            </Typography>
-          </Paper>
-        </Collapse>
-      </div>
-  )
-}
+    <div className={classes.root}>
+      <Collapse in={open}>
+        <AddCardorListText 
+          type={type}
+          setOpen={setOpen}
+          listId={listId}
+        />
+      </Collapse>
+      <Collapse in={!open}>
+        <Paper 
+          className={classes.addCardorListText}
+          onClick={() => setOpen(true)}
+        >
+          <Typography>
+            {type === "card" ? "+ Add a card" : "+ Add another list"}
+          </Typography>
+        </Paper>
+      </Collapse>
+    </div>
+  );
+};
 
-const useStyle = makeStyles(theme => ({
+const useStyle = makeStyles((theme) => ({
   root: {
     width: '300px',
     marginTop: theme.spacing(1),
   },
-  AddCardorListText: {
+  addCardorListText: {
     padding: theme.spacing(1, 1, 1, 2),
     margin: theme.spacing(0, 1, 1, 1),
     backgroundColor: '#ebecf0',
     '&:hover': {
-      backgroundColor: alpha('#000000', 0.25)
-    }
-  }
-
-}))
-
+      backgroundColor: alpha('#000', 0.25),
+    },
+  },
+}));
