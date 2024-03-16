@@ -1,8 +1,8 @@
 import './App.css';
+import bg from './assets/bg.jpeg';
 import { useContext, useState } from 'react';
 import { TrelloList } from './components/TrelloList';
 import { makeStyles } from '@material-ui/core';
-import bg from './assets/bg.jpeg';
 import { AddCardorList } from './components/AddCardorList';
 import { mockData } from './mockdata';
 import ContextAPI from './ContextAPI';
@@ -55,36 +55,41 @@ function App() {
     })
         
   }
-
   const onDragEnd = () => {}
 
   return (
     <>
       <ContextAPI.Provider value={{ updateListTitle, addCard, addList }}>
-          <div className={classes.root}>
+
+        <div className={classes.root}>
+
           <DragDropContext onDragEnd={ onDragEnd }>
-            <Droppable droppableId="12345" type="list" direction="horizontal">
+            <Droppable droppableId="board" type="list" direction="horizontal">
             
-                {provided => (
-                  <div className={classes.container} ref={provided.innerRef} {...provided.droppableProps}>
-                      
+                {(droppableProvided) => (
+                  <div
+                    className={classes.container}
+                    ref={droppableProvided.innerRef} 
+                    {...droppableProvided.droppableProps}
+                  >
                       {
                         data.listIds.map((listId) => {
                           const list = data.lists[listId];
                           return <TrelloList list={list} key={listId}/>
                         })
                       }
-
                     <div>
                       <AddCardorList type="list"/>
-                      {provided.placeholder}
+                      {droppableProvided.placeholder}
                     </div>
                   </div>
                 )}
               
             </Droppable>
           </DragDropContext>
-          </div>
+
+        </div>
+
       </ContextAPI.Provider>
       
     </>
